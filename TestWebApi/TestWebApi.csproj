@@ -5,4 +5,16 @@
   </PropertyGroup>
 
 
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="publish\appsettings.Development.json" />
+    <Content Remove="publish\appsettings.json" />
+    <Content Remove="publish\TestWebApi.deps.json" />
+    <Content Remove="publish\TestWebApi.runtimeconfig.json" />
+    <Content Remove="publish\web.config" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,25 @@
+apiVersion: apps/v1 #apiVersion是当前配置格式的版本
+kind: Deployment #kind是要创建的资源类型
+metadata:  #metadata是该资源的元数据，name是必须的元数据项
+  #指定deployment的名称
+  name: webapi-deployment
+  namespace: k8s-dotnet
+  labels:
+    app: webapi-demo  #标签
+spec:
+  #期望创建3个实例（3个pod）
+  replicas: 2
+  selector: # .spec.selector 必须匹配 .spec.template.metadata.labels，否则它将被API拒绝。如果 .spec.selector 没有被指定， .spec.selector.matchLabels 默认是 .spec.template.metadata.labels
+    #选择label：app=ecs-demo的pod来创建实例
+    matchLabels:   #metadata定义Pod的元数据，至少要顶一个label，label的key和value可以任意指定
+      app: webapi-demo
+  template:
+    metadata:
+      labels:
+        app: webapi-demo
+    spec:
+      containers:
+      - name: webapi-demo
+        image: registry.cn-shenzhen.aliyuncs.com/simon-dotnet/sz.webapi:v1.0.1   # docker imange地址  REPOSITORY:TAG
+        ports:
+        - containerPort: 80 #暴露给service的地址, 与镜像开放的端口一致
