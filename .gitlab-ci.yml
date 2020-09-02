@@ -8,7 +8,9 @@ build_job:
     tags: # build gitRunner的tag标签
         - build
     script:
-        - ./build/ci.sh
+        - pwd
+        - ls
+        - ./TestWebApi/build/ci.sh
 
 cleanup_build_job:
     stage: cleanup_build
