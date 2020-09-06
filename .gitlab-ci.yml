@@ -10,7 +10,7 @@ build_job:
     script:
         - pwd
         - ls
-        - ./TestWebApi/build/ci.sh
+        - ./build/ci.sh
 
 cleanup_build_job:
     stage: cleanup_build
