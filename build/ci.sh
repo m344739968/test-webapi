@@ -20,7 +20,7 @@ dotnet build TestWebApi.sln
 
 rm -fr ${publishOutputDir}
 mkdir -p ${publishOutputDir}
-echo "开始编译项目"
+echo "publish solution..."
 dotnet publish ./TestWebApi/TestWebApi.csproj -o ${publishOutputDir} -c release --no-restore
 # echo "登录docker hub仓库地址, docker login --username=****** --password=*****"
 # echo "编译镜像"
@@ -28,7 +28,7 @@ docker build -t ${registryHost}/${namespace}/${repository}:${version} ${publishO
 # docker tag ${imagename}:${version} ${registryHost}/${namespace}/${repository}:${version}
 # echo "推送镜像"
 docker push ${registryHost}/${namespace}/${repository}:${version}
-echo "镜像版本：${imagename}:${version}"
+echo "images version:${imagename}:${version}"
 if [ $? -eq 0 ]; then
  echo "push Success"
 else 
