@@ -15,6 +15,9 @@ declare imagename=webapi
 declare version=v1.0.1
 declare imagefullname=${imagename}:${version}
 
+echo "build solution..."
+dotnet build TestWebApi.sln
+
 rm -fr ${publishOutputDir}
 mkdir -p ${publishOutputDir}
 echo "开始编译项目"
