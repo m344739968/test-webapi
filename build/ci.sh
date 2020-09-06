@@ -12,7 +12,7 @@ declare -r namespace=simon-dotnet
 declare -r repository=sz.webapi
 declare publishOutputDir=./publish
 declare imagename=webapi
-declare version=v1.0.1
+declare version=v1.0.0
 declare imagefullname=${imagename}:${version}
 
 echo "build solution..."
