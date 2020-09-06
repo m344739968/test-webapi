@@ -1,30 +1,46 @@
 stages:
+    - test
     - build
     - cleanup_build
-    - test
+    - cleanup_last
+
+test_job:
+    # 执行测试用例
+    stage: test
+    tags: # build gitRunner的tag标签
+        - build
+    script:
+        - echo '开始执行测试用例'
     
 build_job:
     stage: build
     tags: # build gitRunner的tag标签
         - build
     script:
-        - pwd
-        - ls
         - chmod +x ./build/ci.sh
         - ./build/ci.sh
 
 cleanup_build_job:
+    # 清理环境
     stage: cleanup_build
     tags: # build gitRunner的tag标签
         - build
     script:
         - echo "cleanup_build_job"
 
-test_job:
-    stage: test
-    tags: # build gitRunner的tag标签
+ cleanup_last_job:
+    # 场景为清理
+    stage: cleanup_last
+    # 指定哪个ci runner跑该工作
+    tags:
         - build
+    # 所需执行的脚本
     script:
         - pwd
+        - ls
         - docker -v
-    # - python manage.py runserver 0.0.0.0:8000
+     # 在哪个分支上可用
+    only:
+        - master
+    #触发条件为手工执行
+    when: manual   
