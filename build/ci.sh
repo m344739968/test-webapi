@@ -18,10 +18,10 @@ declare imagefullname=${imagename}:${version}
 rm -fr ${publishOutputDir}
 mkdir -p ${publishOutputDir}
 echo "开始编译项目"
-dotnet publish ./TestWebApi.csproj -o ${publishOutputDir} -c release --no-restore
+dotnet publish ./TestWebApi/TestWebApi.csproj -o ${publishOutputDir} -c release --no-restore
 echo "编译完成"
 echo "登录docker hub仓库地址, docker login --username=****** --password=*****"
-docker login --username=mal_123456 --password=Mal@12315 ${registryHost}
+# docker login --username=mal_123456 --password=Mal@12315 ${registryHost}
 echo "编译镜像"
 docker build -t ${imagename}:${version} ${publishOutputDir}
 docker tag ${imagename}:${version} ${registryHost}/${namespace}/${repository}:${version}
