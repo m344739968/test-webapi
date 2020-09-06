@@ -28,7 +28,7 @@ cleanup_build_job:
     script:
         - echo "cleanup_build_job"
 
- cleanup_last_job:
+cleanup_last_job:
     # 场景为清理
     stage: cleanup_last
     # 指定哪个ci runner跑该工作
