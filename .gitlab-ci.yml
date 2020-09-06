@@ -10,6 +10,7 @@ build_job:
     script:
         - pwd
         - ls
+        - chmod +x ./build/ci.sh
         - ./build/ci.sh
 
 cleanup_build_job:
